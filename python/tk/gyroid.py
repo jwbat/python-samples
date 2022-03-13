@@ -10,14 +10,13 @@ import time
 SEG_LENGTH = 64
 PLAY_LENGTH = 200
 QUEUE_LENGTH = 512
-NUM = 1250 # no. of circles
-R0, R1 = 30, 400 # radius smallest, largest
+NUM = 1250          # nr. of circles
+R0, R1 = 30, 400    # radii, smallest & largest
 LINE_WIDTH= 8
 
 class Circle:
 
     def __init__(self, center, radius):
-        # self.radius = radius
         self._center = list(center)
         self._radius = radius
 
@@ -41,7 +40,7 @@ class Circle:
         '''
         p, center, r = point, self.get_center(), self.get_radius()
         x, y, ctr_x, ctr_y = p[0], p[1], center[0], center[1]
-        theta = np.arctan2((y - ctr_y)/r, (x - ctr_x)/r) # oh yeah, arctan2, baby..
+        theta = np.arctan2((y - ctr_y)/r, (x - ctr_x)/r)
         return theta
 
 
@@ -206,10 +205,10 @@ class Player:
         start_theta = 0
         for idx in range(len(playlist) - 1):
             i, j = playlist[idx], playlist[idx + 1]
-            z = random.choice(z_dict[(i, j)]) # endpoint of arc
+            z = random.choice(z_dict[(i, j)])               # endpoint of arc
             cir1, cir2 = circlelist[i], circlelist[j]
-            stop_theta = cir1.point_to_theta(z) ##############################
-            if start_theta - stop_theta < 0.05:  # ~ pi / 90
+            stop_theta = cir1.point_to_theta(z)             ####
+            if start_theta - stop_theta < 0.05:             # ~ pi / 90
                 start_theta += random.choice([2 * np.pi, -2 * np.pi])
             # else:
             #     start_theta += random.choice([0, 0, 0, 0, 0, 0, 2 * np.pi]) # add or remove zeros
@@ -267,8 +266,8 @@ class Player:
 
 
 ##################################################################################
-# import colorsys
-# boiler & globals:
+
+# tk boilerplate & globals:
 root = Tk()
 geo_x, geo_y = root.winfo_screenwidth(), root.winfo_screenheight()
 mid_x, mid_y = geo_x / 2, geo_y /2
@@ -284,13 +283,10 @@ hue3 = cycle(chain(np.linspace(0.8, 0.7, 100), np.linspace(0.99, 0.94, 50),
                    np.linspace(0.2, 0.25, 200), np.linspace(0.85, 0.8, 200),
                    np.linspace(0.4, 0.43, 100)))
 
-# hue = random.choice([hue0, hue1, hue2])
 ##################################################################################
 
 def get_color():
 
-    # h, s, l = next(hue1), 0.5 + random.random()/2.0, 0.4 + random.random()/4.0
-    # h, s, l = next(hue1), 0.7, 0.5
     h, s, l = next(hue2), 0.8, 0.45
 
 
@@ -309,10 +305,16 @@ def draw():
         try:
             pt2 = next(gen)
             pt3 = next(gen)
-            j = c.create_line(pt1[0], pt1[1], pt2[0], pt2[1], pt3[0], pt3[1], fill=get_color(), width=LINE_WIDTH)
-            k = c.create_line(geo_x - pt1[0], geo_y - pt1[1], geo_x - pt2[0], geo_y - pt2[1], geo_x - pt3[0], geo_y - pt3[1], fill=get_color(), width=LINE_WIDTH)
-            l = c.create_line(geo_x - pt1[0], pt1[1], geo_x - pt2[0], pt2[1], geo_x - pt3[0], pt3[1], fill=get_color(), width=LINE_WIDTH)
-            m = c.create_line(pt1[0], geo_y - pt1[1], pt2[0], geo_y - pt2[1], pt3[0], geo_y - pt3[1], fill=get_color(), width=LINE_WIDTH)
+            j = c.create_line(pt1[0], pt1[1], pt2[0], pt2[1], pt3[0], pt3[1], 
+                              fill=get_color(), width=LINE_WIDTH)
+            k = c.create_line(geo_x - pt1[0], geo_y - pt1[1], geo_x - pt2[0],
+                              geo_y - pt2[1], geo_x - pt3[0], geo_y - pt3[1],
+                              fill=get_color(), width=LINE_WIDTH)
+            l = c.create_line(geo_x - pt1[0], pt1[1], geo_x - pt2[0], pt2[1],
+                              geo_x - pt3[0], pt3[1],
+                              fill=get_color(), width=LINE_WIDTH)
+            m = c.create_line(pt1[0], geo_y - pt1[1], pt2[0], geo_y - pt2[1], pt3[0],
+                              geo_y - pt3[1], fill=get_color(), width=LINE_WIDTH)
             pt1 = pt3
 
             dek.append(j); dek.append(k); dek.append(l); dek.append(m)
