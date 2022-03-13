@@ -11,7 +11,7 @@ def plot_exp():
 
     ax.plot(x, ysin, 'xkcd:lime', label='exp(-x)*sin(4x)', linewidth=3)
     ax.plot(x, ycos, 'xkcd:magenta', label='exp(-x)*cos(4x)', linewidth=3)
-    ax.grid(b=True)
+    ax.grid(visible=True)
     ax.set_title('exp x sine functions', fontsize=16, color='0.1')
     ax.set_xlabel('x values 0 to 5', fontsize=16, color='0.1')
     ax.set_ylabel('y values', fontsize=16 ,color='0.1')

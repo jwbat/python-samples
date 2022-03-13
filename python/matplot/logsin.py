@@ -12,7 +12,7 @@ def plot_exp():
 
     ax.plot(x, y1, 'xkcd:lemon', label='sqrt', linewidth=3)
     ax.plot(x, y2, 'xkcd:bright teal', label='exp(sin(x))', linewidth=3)
-    ax.grid(b=True)
+    ax.grid(visible=True)
     ax.set_title('f(x) = sqrt(|x|) & g(x) = exp(sin(x))',
                   fontsize=18, color='xkcd:dark orange')
     ax.set_xlabel('x values', fontsize=16, color='0.1')

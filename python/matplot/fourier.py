@@ -10,7 +10,7 @@ def plot_exp():
     fig, ax = plt.subplots(1)
 
     ax.plot(freq, sp.real, 'xkcd:pink', label='Fourier', linewidth=2)
-    ax.grid(b=True)
+    ax.grid(visible=True)
     ax.set_title('Fourier', fontsize=16, color='0.1')
     ax.set_xlabel('x values', fontsize=16, color='0.1')
     ax.set_ylabel('y values', fontsize=16 ,color='0.1')
