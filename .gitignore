@@ -1,0 +1,11 @@
+# cpp
+*
+!*.*
+!*/
+!makefile
+!Makefile
+
+# python
+__pycache__
+venv
+.DS_Store
