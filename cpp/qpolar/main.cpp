@@ -39,13 +39,15 @@ int main(int argc, char* args[])
 
         auto [red, green, blue] = next_color(tick);
 
+        // clear
         screen.clear();
 
+        // draw
         for (int i{ 0 }; i < q.size(); ++i)
         {
             p = q.front();
             p2 = q.back();
-            draw_point(screen.renderer, p.x, p.y, 5, red, green, blue);
+            draw_point(screen.renderer, p.x, p.y, 2, red, green, blue);
             draw_line(screen.renderer, p.x, p.y, p2.x, p2.y, red1, green1, blue1);
             draw_line(screen.renderer, p.x + 1, p.y + 1, p2.x + 1, p2.y + 1, red1, green1, blue1);
             draw_line(screen.renderer, p.x + 2, p.y + 2, p2.x + 2, p2.y + 2, red1, green1, blue1);
@@ -63,6 +65,7 @@ int main(int argc, char* args[])
         while (q.size() > N)
             q.pop();
 
+        // present
         screen.update();
 
         if (!screen.process_events())
